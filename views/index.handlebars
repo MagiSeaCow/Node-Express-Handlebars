@@ -1,0 +1,74 @@
+<div class="container" style="width: 99vw !important;">
+
+    <div class="jumbotron" style="
+        height: 100vh;
+        background-color: orange;">
+
+        <div class="container" >
+            <div class="col-md-6">
+                <h1 style=" position:relative; left: 50%; font-family: 'Helvetica', cursive;">Eat Da Burger!</h1>
+                <h3 style=" position:relative; left: 65%; font-family: 'Helvetica', cursive;">Add a burger and devour it!</h3>
+                <br>
+                <h2 style="font-family: 'Helvetica', cursive; font-size: 30px !important;">Cook a Burger</h2>
+
+                <form class="create-form">
+                    <div class="form-group">
+                        <label for="new_burger">New Burger:</label>
+                        <br />
+                        <input type="text" id="add_new_burger_input" name="add_new_burger_input" style=" border:none; border-radius: 20px;" >
+
+                        <button type="submit" id="add_burger" style=" font-family: 'Helvetica', cursive; background-color:rgb(150, 28, 12); border:none; border-radius: 20px; color:aqua;" >Add Burger</button>
+                    </div>
+                </form>
+
+            </div>
+                <div class="col-md-6">
+            </div>  
+        </div>  
+
+        <hr style="border: 5px solid grey; border-radius: 10px;"/>
+
+        <div class="container">
+        <!--=========Uneaten Burgers ============-->
+            <div class="col-md-4" style="position:relative; left: 40px;">
+                <h2>Available</h2>
+                <br />
+                <br />
+
+                <ul style="position:relative; right: 40px;">
+                {{#each burgers}}
+                <!-- for each function for burger - handlebars -->
+                {{#unless devoured}}
+                <!-- using the unless helper as the inverse of the if helper. Its block will be rendered if the expression returns a false value. -->
+                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                <button type="button" onclick="play()" class="eat_burger" data-id="{{this.id}}" data-devoured"{{devour}}" style="float:right; font-family: 'Helvetica', cursive; background-color:#90C13E; border:none; border-radius: 20px; color:white;">Conquer</button>
+                <hr>
+                {{/unless}}
+                {{/each}}
+                </ul>      
+            </div>
+
+            <div class="col-md-4" style="position:relative; left: 100px; background-size:contain; height:250px;"></div>
+            <!-- =========Devoured ============ -->
+            <div class="col-md-4" style="position:relative; left: 40px;">
+
+            <h2>Already Eaten</h2>
+            <br/>
+            <br/>
+            <ul style="position:relative; right: 40px;">
+            {{#each burgers}}
+            {{#if devoured}}
+            <!--  if helper used to conditionally render a block. If its argument returns false, undefined, null, "", 0, or [], Handlebars will not render the block. -->
+
+            <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+            <button type="button" class="delete_burger"  data-id="{{this.id}}" data-new_devoured="{{devour}}" style="float:right; font-family: 'Helvetica', cursive; background-color:#F73426; border:none; border-radius: 20px; color:white;">Remove Burger</button>
+            <hr>
+            {{/if}}
+            {{/each}}
+            </ul>
+            </div>
+        </div>
+        <!-- End of  jumbotron -->
+    </div>
+
+</div>
